@@ -13,9 +13,9 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
-  <link rel="stylesheet" href="style.css?v=36">
+  <link rel="stylesheet" href="style.css?v=37">
   <script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
-  <script defer src="app.js?v=36"></script>
+  <script defer src="app.js?v=37"></script>
 </head>
 <body>
   <main class="retro-app">
@@ -33,6 +33,7 @@
         <div class="equalizer" id="equalizer" aria-label="Audio level animation"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <audio id="radio-audio" preload="none"></audio>
       </article>
+      <div class="glow-mode-switch" role="group" aria-label="Radio glow colour"><span>GLOW</span><button type="button" data-glow-mode="color">COLOR</button><button type="button" data-glow-mode="warm">WARM</button><button type="button" data-glow-mode="white">WHITE</button></div>
       <div class="transport" aria-label="Radio controls">
         <button class="transport-button" id="radio-prev" title="Previous station" aria-label="Previous station">⏮</button>
         <button class="transport-button main-play" id="radio-play" title="Play" aria-label="Play">▶</button>
