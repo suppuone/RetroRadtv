@@ -15,6 +15,7 @@
 
   function loadStore(key,fallback={}){try{const value=JSON.parse(localStorage.getItem(key)||'null');return value&&typeof value==='object'?value:fallback;}catch{return fallback;}}
   function setRadioVolume(level,persist=true){const value=Math.max(0,Math.min(100,Math.round(Number(level)||0)));$('radio-volume').value=String(value);audio.volume=value/100;$('volume-number').textContent=String(value);document.querySelector('.dial-wrap').style.setProperty('--dial-angle',`${-135+value*2.7}deg`);if(persist)saveStore(VOLUME_STORE,value);}
+  function setVolumeFromDialPointer(event){const dial=document.querySelector('.dial-wrap'),rect=dial.getBoundingClientRect(),dx=event.clientX-(rect.left+rect.width/2),dy=event.clientY-(rect.top+rect.height/2);let angle=Math.atan2(dy,dx)*180/Math.PI+90;if(angle>180)angle-=360;angle=Math.max(-135,Math.min(135,angle));setRadioVolume((angle+135)*100/270);}
   function saveStore(key,value){try{localStorage.setItem(key,JSON.stringify(value));}catch{notify('This browser could not save your presets.');}}
   function stationKey(item){return String(item?.stationuuid||item?.url_resolved||item?.url||item?.name||'');}
   function notify(message){const el=$('toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),2400);}
@@ -75,6 +76,7 @@
     $('mode-label').textContent=screenId==='radio-screen'?'◉ RADIO MODE':screenId==='tv-screen'?'▣ TV MODE':screenId==='presets-screen'?'★ YOUR PRESETS':'⌕ EXPLORE';
     if(screenId==='presets-screen')renderPresets();
   }
+  function stepScreen(direction){const order=['radio-screen','tv-screen','presets-screen','explore-screen'],active=document.querySelector('.screen.active')?.id,index=Math.max(0,order.indexOf(active));setScreen(order[(index+direction+order.length)%order.length]);}
   function radioCurrent(){return radios[radioIndex]||null;}
   function tvCurrent(){return tvs[tvIndex]||null;}
   function drawRadio(){
@@ -231,6 +233,18 @@
   }
 
   document.querySelectorAll('.nav-item').forEach(button=>button.addEventListener('click',()=>setScreen(button.dataset.screen)));
+  let pageSwipeStart=null;
+  document.querySelectorAll('.screen').forEach(screen=>{
+    screen.addEventListener('pointerdown',event=>{
+      if(event.pointerType==='mouse'||event.target.closest('button,input,select,textarea,a,video,.dial-wrap,.tv-rail,.preset-grid,.explore-results')){pageSwipeStart=null;return;}
+      pageSwipeStart={x:event.clientX,y:event.clientY,id:event.pointerId,screen:screen.id};
+    });
+    screen.addEventListener('pointerup',event=>{
+      const start=pageSwipeStart;pageSwipeStart=null;if(!start||start.id!==event.pointerId||start.screen!==document.querySelector('.screen.active')?.id)return;
+      const dx=event.clientX-start.x,dy=event.clientY-start.y;if(Math.abs(dx)>58&&Math.abs(dx)>Math.abs(dy)*1.3)stepScreen(dx<0?1:-1);
+    });
+    screen.addEventListener('pointercancel',()=>{pageSwipeStart=null;});
+  });
   document.querySelectorAll('[data-preset-mode]').forEach(button=>button.addEventListener('click',()=>{presetMode=button.dataset.presetMode;document.querySelectorAll('[data-preset-mode]').forEach(item=>item.classList.toggle('selected',item===button));renderPresets();}));
   document.querySelectorAll('[data-browser-kind]').forEach(button=>button.addEventListener('click',()=>{browserKind=button.dataset.browserKind;onlineRows=[];onlineOffset=0;onlineVisibleLimit=100;onlineHasMore=false;onlineCountries=[];onlineGenres=[];onlineSearchDone=false;document.querySelectorAll('[data-browser-kind]').forEach(item=>item.classList.toggle('selected',item===button));populateExploreFilters();renderExplore();if(browserSource==='online')loadOnlineFilters();}));
   document.querySelectorAll('[data-browser-source]').forEach(button=>button.addEventListener('click',()=>{browserSource=button.dataset.browserSource;document.querySelectorAll('[data-browser-source]').forEach(item=>item.classList.toggle('selected',item===button));$('online-search-row').hidden=browserSource!=='online';onlineRows=[];onlineOffset=0;onlineVisibleLimit=100;onlineHasMore=false;onlineSearchDone=false;populateExploreFilters();renderExplore();if(browserSource==='online')loadOnlineFilters();}));
@@ -242,6 +256,9 @@
   $('radio-play').addEventListener('click',toggleRadio);$('radio-prev').addEventListener('click',()=>stepRadio(-1));$('radio-next').addEventListener('click',()=>stepRadio(1));
   $('radio-star').addEventListener('click',()=>{const station=radioCurrent();if(station)togglePreset('radio',station);});
   $('radio-volume').addEventListener('input',event=>setRadioVolume(event.target.value));
+  const volumeDial=document.querySelector('.dial-wrap');
+  volumeDial.addEventListener('pointerdown',event=>{if(event.pointerType==='mouse'&&event.button!==0)return;event.preventDefault();volumeDial.setPointerCapture(event.pointerId);setVolumeFromDialPointer(event);});
+  volumeDial.addEventListener('pointermove',event=>{if(volumeDial.hasPointerCapture(event.pointerId))setVolumeFromDialPointer(event);});
   $('tv-star').addEventListener('click',()=>{const station=tvCurrent();if(station)togglePreset('tv',station);});
   $('tv-prev').addEventListener('click',()=>stepTV(-1));$('tv-next').addEventListener('click',()=>stepTV(1));$('tv-toggle').addEventListener('click',()=>{if(!video.src&&!video.currentSrc){const rows=currentRows('tv');if(rows.length)playTV(rows[0]);return;}if(video.paused)video.play().then(()=>{$('tv-toggle').textContent='Ⅱ';}).catch(()=>notify('Press play on the video.'));else video.pause();});
   document.querySelectorAll('[data-remote]').forEach(button=>button.addEventListener('click',()=>{

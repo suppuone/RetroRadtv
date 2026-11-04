@@ -1,15 +1,19 @@
-# MOBILE RETRO RADIO VER. 1.0
+# Mobile Retro Radio v1.0
 
-A mobile-friendly retro edition of COOLmag Radio, copied into its own folder so it can be deployed separately. Radio opens first; Live TV, presets, and Explore are also included.
-
-## Local preview
-
-Serve this folder with `python -m http.server 8000`, then open `http://localhost:8000/`. The app reads station data from the included `data` folder.
+Standalone retro radio and live TV app for phones and desktop browsers.
 
 ## GitHub Pages
 
-After publishing this folder in the `suppuone/RADIOtv` repository, open:
+Repository: `suppuone/RetroRadtv`
 
-`https://suppuone.github.io/RADIOtv/mobile_RETRO_RADIO_VER.1.0/`
+After enabling GitHub Pages from `main` / `/(root)`, open:
 
-Radio and TV presets in this folder are separate from the browser's local favorites. Stream availability may vary by station, region, and browser.
+`https://suppuone.github.io/RetroRadtv/`
+
+Keep `index.html`, `style.css`, and `app.js` in the repository root. Keep the station catalogs in `data/radio-presets.json` and `data/tv-presets.json`.
+
+## Local preview
+
+From this folder, run `python -m http.server 8000`, then open `http://localhost:8000/`.
+
+Favorites and volume are stored in the current browser. Stream availability can vary by provider, region, and device.

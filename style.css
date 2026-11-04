@@ -149,3 +149,20 @@ body{font-size:20px}.tv-rail-logo{font-size:14px}.result-row{font-size:20px}#tv-
 /* Hide outer page scrollbars while preserving touch/trackpad scrolling. */
 #radio-screen,#explore-screen,#presets-screen{scrollbar-width:none;-ms-overflow-style:none;scrollbar-gutter:auto}
 #radio-screen::-webkit-scrollbar,#explore-screen::-webkit-scrollbar,#presets-screen::-webkit-scrollbar{display:none;width:0;height:0}
+/* Mobile refinements: trim page height, keep the rotary volume control touch-safe,
+   and preserve vertical scrolling while the app handles horizontal page swipes. */
+html,body{overscroll-behavior-x:contain}
+.screen{touch-action:pan-y}
+.tv-rail{touch-action:pan-x}
+.dial-wrap{touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer}
+.dial-wrap input{pointer-events:none;touch-action:none}
+.dial-center{pointer-events:none}
+.dial-wrap:after{top:10%;height:25%;transform-origin:50% 220%;pointer-events:none}
+@media(max-width:480px){
+  .retro-app{min-height:90dvh}
+  .screen{min-height:calc(90dvh - 113px)}
+  #radio-screen .radio-art{height:230px}
+  #tv-screen .tv-picture{width:90%;margin-inline:auto}
+  #radio-screen .dial-section{margin-top:14px}
+  #radio-screen .dial-wrap{width:min(132px,42vw);height:auto;aspect-ratio:1}
+}
