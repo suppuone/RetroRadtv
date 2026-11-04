@@ -1,0 +1,368 @@
+{
+  "https://cdn.pishow.tv/ott/live/1433/master.m3u8": {
+    "name": "News Tamil 24x7 (576p)",
+    "group": "News",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_NEWS_TAMIL_24X7/images/LOGO_HD/image.png",
+    "url": "https://cdn.pishow.tv/ott/live/1433/master.m3u8",
+    "options": []
+  },
+  "https://segment.yuppcdn.net/240122/news7/playlist.m3u8": {
+    "name": "News 7 Tamil (576p)",
+    "group": "News",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/News7_Tamil.png",
+    "url": "https://segment.yuppcdn.net/240122/news7/playlist.m3u8",
+    "options": []
+  },
+  "https://livestream.rajtv.tv/hlslive/Admin/px08241087/live/Raj_Musix/master_1.m3u8": {
+    "name": "Raj Musix Tamil (1080p)",
+    "group": "Music",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_RAJ_MUSIX_TAMIL/images/LOGO_HD/image.png",
+    "url": "https://livestream.rajtv.tv/hlslive/Admin/px08241087/live/Raj_Musix/master_1.m3u8",
+    "options": []
+  },
+  "https://stream.ottlive.co.in/hindikhabar/index.m3u8": {
+    "name": "Hindi Khabar (1080p)",
+    "group": "News",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_HINDI_KHABAR/images/LOGO_HD/image.png",
+    "url": "https://stream.ottlive.co.in/hindikhabar/index.m3u8",
+    "options": []
+  },
+  "https://wurlsonypicturestv.global.transmit.live/hls/68deeb1c0238cda82df543dd/v1/spt_sonykal_1/lg_us/latest/main/hls/playlist.m3u8": {
+    "name": "Sony KAL Hindi (1080p)",
+    "group": "Undefined",
+    "logo": "https://i.imgur.com/9Qq8DKh.png",
+    "url": "https://wurlsonypicturestv.global.transmit.live/hls/68deeb1c0238cda82df543dd/v1/spt_sonykal_1/lg_us/latest/main/hls/playlist.m3u8",
+    "options": []
+  },
+  "https://d3bp6dwmpbdajl.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-ury0meh5m4nzm/index.m3u8": {
+    "name": "CNN International (1080p)",
+    "group": "News",
+    "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b8/CNN-International-Logo.svg/960px-CNN-International-Logo.svg.png",
+    "url": "https://d3bp6dwmpbdajl.cloudfront.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-ury0meh5m4nzm/index.m3u8",
+    "options": []
+  },
+  "https://d2px1d6ssc60fw.cloudfront.net/SunTV/SunTV-HDR10-IN-index.m3u8": {
+    "name": "Sun TV HD (1080p)",
+    "group": "Entertainment",
+    "logo": "https://dtil.tmsimg.com/assets/GNLZZGG002Z0M0Y.png?lock=720x540",
+    "url": "https://d2px1d6ssc60fw.cloudfront.net/SunTV/SunTV-HDR10-IN-index.m3u8",
+    "options": []
+  },
+  "https://amg13737-amg13737c1-amgplt0016.playout.now3.amagi.tv/playlist/amg13737-amg13737c1-amgplt0016/playlist.m3u8": {
+    "name": "Asianet News (1080p)",
+    "group": "News",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ASIANET_NEWS/images/LOGO_HD/image.png",
+    "url": "https://amg13737-amg13737c1-amgplt0016.playout.now3.amagi.tv/playlist/amg13737-amg13737c1-amgplt0016/playlist.m3u8",
+    "options": []
+  },
+  "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:starasianet.smil/chunklist_b1928000.m3u8": {
+    "name": "Asianet HD (1080p)",
+    "group": "Entertainment",
+    "logo": "https://i.imgur.com/Wv7MOzg.png",
+    "url": "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:starasianet.smil/chunklist_b1928000.m3u8",
+    "options": []
+  },
+  "https://cc-3448kp65yhc5w.akamaized.net/WWBI/Amagi/ETV_News_IN/playlist.m3u8": {
+    "name": "ETV News (1080p)",
+    "group": "News",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/ETV_News.png",
+    "url": "https://cc-3448kp65yhc5w.akamaized.net/WWBI/Amagi/ETV_News_IN/playlist.m3u8",
+    "options": []
+  },
+  "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8": {
+    "name": "Aaj Tak HD (1080p)",
+    "group": "News",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_AAJ_TAK/images/LOGO_HD/image.png",
+    "url": "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8",
+    "options": []
+  },
+  "https://abc-news-dmd-streams-1.akamaized.net/out/v1/701126012d044971b3fa89406a440133/index.m3u8": {
+    "name": "ABC News (720p)",
+    "group": "News",
+    "logo": "https://i.imgur.com/BrW7gk8.png",
+    "url": "https://abc-news-dmd-streams-1.akamaized.net/out/v1/701126012d044971b3fa89406a440133/index.m3u8",
+    "options": []
+  },
+  "https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-472500/abpnews/master.m3u8": {
+    "name": "ABP News (1080p)",
+    "group": "News",
+    "logo": "https://dtil.tmsimg.com/assets/s158138_ld_h15_aa.png?lock=720x540",
+    "url": "https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-472500/abpnews/master.m3u8",
+    "options": []
+  },
+  "https://mumbai-edge.smartplaytv.in/DDNews/index.m3u8": {
+    "name": "DD News (1080p)",
+    "group": "News",
+    "logo": "https://ltsk-cdn.s3.eu-west-1.amazonaws.com/jumpstart/Temp_Live/cdn/HLS/Channel/transparentImages/DD%20News%20HD.png",
+    "url": "https://mumbai-edge.smartplaytv.in/DDNews/index.m3u8",
+    "options": []
+  },
+  "https://drk6xq0vhn.gpcdn.net/live/discovery_science_abr/index.m3u8": {
+    "name": "Discovery Science (720p)",
+    "group": "Science",
+    "logo": "https://dtil.tmsimg.com/assets/s159107_ld_h15_aa.png?lock=720x540",
+    "url": "https://drk6xq0vhn.gpcdn.net/live/discovery_science_abr/index.m3u8",
+    "options": []
+  },
+  "http://168.196.127.137:6001/play/a097/index.m3u8": {
+    "name": "Discovery World (1080p)",
+    "group": "Entertainment",
+    "logo": "https://i.imgur.com/yNFmUkE.png",
+    "url": "http://168.196.127.137:6001/play/a097/index.m3u8",
+    "options": []
+  },
+  "https://yuppmumfta1.vgcdn.net/211125/athvantv/manifest.mpd": {
+    "name": "Aathavan TV (720p)",
+    "group": "Entertainment",
+    "logo": "https://i.imgur.com/LEVEhTH.png",
+    "url": "https://yuppmumfta1.vgcdn.net/211125/athvantv/manifest.mpd",
+    "options": []
+  },
+  "https://live-hls-apps-aje-fa.getaj.net/AJE/index.m3u8": {
+    "name": "Al Jazeera English (1080p)",
+    "group": "News",
+    "logo": "https://i.imgur.com/7bRVpnu.png",
+    "url": "https://live-hls-apps-aje-fa.getaj.net/AJE/index.m3u8",
+    "options": []
+  },
+  "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/master.m3u8": {
+    "name": "DW English",
+    "group": "News",
+    "logo": "https://i.imgur.com/8MRNFb9.png",
+    "url": "https://dwamdstream102.akamaized.net/hls/live/2015525/dwstream102/master.m3u8",
+    "options": []
+  },
+  "http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8": {
+    "name": "Arirang TV",
+    "group": "News",
+    "logo": "https://i.imgur.com/Asu5pE9.png",
+    "url": "http://amdlive-ch01.ctnd.com.edgesuite.net/arirang_1ch/smil:arirang_1ch.smil/playlist.m3u8",
+    "options": []
+  },
+  "https://cdn4.skygo.mn/live/disk1/Cartoon_Network/HLSv3-FTA/Cartoon_Network.m3u8": {
+    "name": "like Gecko) Chrome/144.0.0.0 Safari/537.36\" group-title=\"Animation;Kids\",Cartoon Network Asia (720p)",
+    "group": "TV",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Cartoon_Network_2010_logo.svg/960px-Cartoon_Network_2010_logo.svg.png",
+    "url": "https://cdn4.skygo.mn/live/disk1/Cartoon_Network/HLSv3-FTA/Cartoon_Network.m3u8",
+    "options": [
+      "http-user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36"
+    ]
+  },
+  "https://cc-mgr91yrk4pehy.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-mgr91yrk4pehy/playlist.m3u8": {
+    "name": "DocuBay TV (1080p)",
+    "group": "Documentary",
+    "logo": "https://i.imgur.com/OGyeLLR.png",
+    "url": "https://cc-mgr91yrk4pehy.akamaized.net/v1/master/3722c60a815c199d9c0ef36c5b73da68a62b09d1/cc-mgr91yrk4pehy/playlist.m3u8",
+    "options": []
+  },
+  "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/NDTV24x7.m3u8": {
+    "name": "NDTV 24x7 (720p)",
+    "group": "News",
+    "logo": "https://dtil.tmsimg.com/assets/s154895_ld_h15_aa.png?lock=720x540",
+    "url": "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/NDTV24x7.m3u8",
+    "options": []
+  },
+  "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:asianetmovies.smil/chunklist_b1928000.m3u8": {
+    "name": "Asianet Movies (396p)",
+    "group": "Movies",
+    "logo": "https://i.imgur.com/cps67hs.png",
+    "url": "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:asianetmovies.smil/chunklist_b1928000.m3u8",
+    "options": []
+  },
+  "https://ktvhdsg.ekantipur.com:8443/high_quality_85840165/hd/kantipurtv/hd_1080/chunks.m3u8": {
+    "name": "Kantipur TV",
+    "group": "General",
+    "logo": "https://i.imgur.com/HEVo2Gc.png",
+    "url": "https://ktvhdsg.ekantipur.com:8443/high_quality_85840165/hd/kantipurtv/hd_1080/chunks.m3u8",
+    "options": []
+  },
+  "https://drk6xq0vhn.gpcdn.net/live/cn_sd_abr/index.m3u8": {
+    "name": "Cartoon Network (India) (720p)",
+    "group": "Animation;Kids",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_CARTOON_NETWORK/images/LOGO_HD/image.png",
+    "url": "https://drk6xq0vhn.gpcdn.net/live/cn_sd_abr/index.m3u8",
+    "options": []
+  },
+  "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:colorstamilhd11.smil/playlist.m3u8": {
+    "name": "Colors Tamil HD (720p)",
+    "group": "Entertainment",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_COLORS_TAMIL/images/LOGO_HD/image.png",
+    "url": "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:colorstamilhd11.smil/playlist.m3u8",
+    "options": []
+  },
+  "https://drk6xq0vhn.gpcdn.net/live/discovery_hd_abr/index.m3u8": {
+    "name": "Discovery Channel (India) HD (720p)",
+    "group": "Entertainment",
+    "logo": "https://dtil.tmsimg.com/assets/s159106_ld_h15_aa.png?lock=720x540",
+    "url": "https://drk6xq0vhn.gpcdn.net/live/discovery_hd_abr/index.m3u8",
+    "options": []
+  },
+  "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelenglish-samsungin/playlist.m3u8": {
+    "name": "History TV18 HD (1080p) [Geo-blocked]",
+    "group": "Documentary",
+    "logo": "https://dtil.tmsimg.com/assets/s143133_ld_h15_aa.png?lock=720x540",
+    "url": "https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/playlist/amg01448-samsungindia-historychannelenglish-samsungin/playlist.m3u8",
+    "options": []
+  },
+  "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/KalaignarSeithigal.m3u8": {
+    "name": "Kalaignar Seithigal (576p)",
+    "group": "News",
+    "logo": "https://dtil.tmsimg.com/assets/s143769_ld_h15_aa.png?lock=720x540",
+    "url": "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/KalaignarSeithigal.m3u8",
+    "options": []
+  },
+  "https://streams.tangotv.in/MALAIMURASUSEITHIGAL/ORIGIN/index.m3u8": {
+    "name": "Malai Murasu TV (576p)",
+    "group": "News",
+    "logo": "https://i.imgur.com/OC5TQxp.png",
+    "url": "https://streams.tangotv.in/MALAIMURASUSEITHIGAL/ORIGIN/index.m3u8",
+    "options": []
+  },
+  "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:starvijayuk.smil/playlist.m3u8": {
+    "name": "Star Vijay UK (396p)",
+    "group": "Entertainment",
+    "logo": "https://i.imgur.com/dZtJHAe.png",
+    "url": "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:starvijayuk.smil/playlist.m3u8",
+    "options": []
+  },
+  "https://streams.tangotv.in/THANTHITV/ORIGIN/index.m3u8": {
+    "name": "Thanthi TV (576p)",
+    "group": "News",
+    "logo": "https://dtil.tmsimg.com/assets/s144000_ld_h15_aa.png?lock=720x540",
+    "url": "https://streams.tangotv.in/THANTHITV/ORIGIN/index.m3u8",
+    "options": []
+  },
+  "https://segment.yuppcdn.net/110322/polimernews/playlist.m3u8": {
+    "name": "Polimer News (576p)",
+    "group": "News",
+    "logo": "https://dtil.tmsimg.com/assets/s143664_ld_h9_aa.png?lock=720x540",
+    "url": "https://segment.yuppcdn.net/110322/polimernews/playlist.m3u8",
+    "options": []
+  },
+  "http://38.96.178.205/SONYHD/index.m3u8": {
+    "name": "Sony Entertainment Television HD (1080p)",
+    "group": "Entertainment",
+    "logo": "https://dtil.tmsimg.com/assets/s159096_ld_h15_aa.png?lock=720x540",
+    "url": "http://38.96.178.205/SONYHD/index.m3u8",
+    "options": []
+  },
+  "https://mumbai-edge.smartplaytv.in/BBCNews/index.m3u8": {
+    "name": "BBC News South Asia (720p)",
+    "group": "News",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_BBC_NEWS/images/LOGO_HD/image.png",
+    "url": "https://mumbai-edge.smartplaytv.in/BBCNews/index.m3u8",
+    "options": []
+  },
+  "https://cdn-euronews.akamaized.net/live/eds/africanews-en/25049/index.m3u8": {
+    "name": "Africanews English (720p)",
+    "group": "News",
+    "logo": "https://i.imgur.com/5UxU4zc.png",
+    "url": "https://cdn-euronews.akamaized.net/live/eds/africanews-en/25049/index.m3u8",
+    "options": []
+  },
+  "https://amg00453-reuters-amg00453c1-rakuten-uk-2110.playouts.now.amagi.tv/playlist/amg00453-reuters-reuters-rakutenuk/playlist.m3u8": {
+    "name": "Reuters TV (1080p)",
+    "group": "News",
+    "logo": "https://i.imgur.com/6eQ2nCJ.png",
+    "url": "https://amg00453-reuters-amg00453c1-rakuten-uk-2110.playouts.now.amagi.tv/playlist/amg00453-reuters-reuters-rakutenuk/playlist.m3u8",
+    "options": []
+  },
+  "https://mumbai-edge.smartplaytv.in/NTVTelugu/index.m3u8": {
+    "name": "NTV Telugu (1080p)",
+    "group": "News",
+    "logo": "https://i.imgur.com/WqTIoWS.png",
+    "url": "https://mumbai-edge.smartplaytv.in/NTVTelugu/index.m3u8",
+    "options": []
+  },
+  "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6cd2f649739a45ca9de1daf81cc7d0f2/index.m3u8": {
+    "name": "News Nation (1080p)",
+    "group": "News",
+    "logo": "https://dtil.tmsimg.com/assets/s143596_ld_h15_aa.png?lock=720x540",
+    "url": "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6cd2f649739a45ca9de1daf81cc7d0f2/index.m3u8",
+    "options": []
+  },
+  "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/0811cd8c37ca4c409d5385a6cd2fa18b/index.m3u8": {
+    "name": "DD News",
+    "group": "News",
+    "logo": "https://ltsk-cdn.s3.eu-west-1.amazonaws.com/jumpstart/Temp_Live/cdn/HLS/Channel/transparentImages/DD%20News%20HD.png",
+    "url": "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/0811cd8c37ca4c409d5385a6cd2fa18b/index.m3u8",
+    "options": []
+  },
+  "https://nhk.lls.pbs.org/index.m3u8": {
+    "name": "NHK World-Japan",
+    "group": "News",
+    "logo": "https://jiotvimages.cdn.jio.com/dare_images/images/NHK_World_Japan.png",
+    "url": "https://nhk.lls.pbs.org/index.m3u8",
+    "options": []
+  },
+  "https://amg00106-france24-france24-samsunguk-qvpp8.amagi.tv/playlist/amg00106-france24-france24-samsunguk/playlist.m3u8": {
+    "name": "France 24 English",
+    "group": "News",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/France_24_logo_%282013%29.svg/512px-France_24_logo_%282013%29.svg.png",
+    "url": "https://amg00106-france24-france24-samsunguk-qvpp8.amagi.tv/playlist/amg00106-france24-france24-samsunguk/playlist.m3u8",
+    "options": []
+  },
+  "https://create.lls.pbs.org/index.m3u8": {
+    "name": "Create",
+    "group": "Education",
+    "logo": "https://i.imgur.com/OIJTECP.png",
+    "url": "https://create.lls.pbs.org/index.m3u8",
+    "options": []
+  },
+  "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg00684-accuweather-accuweather-plex/playlist.m3u8": {
+    "name": "AccuWeather Now",
+    "group": "Weather",
+    "logo": "https://i.imgur.com/M8wbVYK.png",
+    "url": "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg00684-accuweather-accuweather-plex/playlist.m3u8",
+    "options": []
+  },
+  "https://dash2.antik.sk/live/test_trt_world_atktv/playlist.m3u8": {
+    "name": "TRT World",
+    "group": "News",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/TRT_World.svg/512px-TRT_World.svg.png",
+    "url": "https://dash2.antik.sk/live/test_trt_world_atktv/playlist.m3u8",
+    "options": []
+  },
+  "https://nw18live.cdn.jio.com/bpk-tv/CNN_News18_NW18_MOB/output01/index.m3u8": {
+    "name": "CNN-News18",
+    "group": "India",
+    "logo": "https://i.imgur.com/K3M8MoK.png",
+    "url": "https://nw18live.cdn.jio.com/bpk-tv/CNN_News18_NW18_MOB/output01/index.m3u8",
+    "options": []
+  },
+  "http://103.185.24.134:3001/SONY-BBC/index.m3u8": {
+    "name": "Sony BBC Earth HD (1080p)",
+    "group": "Documentary",
+    "logo": "https://dtil.tmsimg.com/assets/s143800_ld_h15_aa.png?lock=720x540",
+    "url": "http://103.185.24.134:3001/SONY-BBC/index.m3u8",
+    "options": []
+  },
+  "https://drk6xq0vhn.gpcdn.net/live/animal_planet_hd_abr/index.m3u8": {
+    "name": "Animal Planet (India) HD (720p)",
+    "group": "Documentary",
+    "logo": "https://xstreamcp-assets-msp.streamready.in/assets/LIVETV/LIVECHANNEL/LIVETV_LIVETVCHANNEL_ANIMAL_PLANET/images/LOGO_HD/image.png",
+    "url": "https://drk6xq0vhn.gpcdn.net/live/animal_planet_hd_abr/index.m3u8",
+    "options": []
+  },
+  "https://d2o8pibksxtln6.cloudfront.net/live/media/Zee_Tamil_HD/hls/Zee_Tamil_HD.m3u8": {
+    "name": "Zee Tamil HD (1080p)",
+    "group": "Entertainment",
+    "logo": "https://dtil.tmsimg.com/assets/GNLZZGG00233WCL.png?lock=720x540",
+    "url": "https://d2o8pibksxtln6.cloudfront.net/live/media/Zee_Tamil_HD/hls/Zee_Tamil_HD.m3u8",
+    "options": []
+  },
+  "https://tinyurl.com/yn3d3rmd": {
+    "name": "HBO Asia SD (720p) [Geo-blocked]",
+    "group": "Movies",
+    "logo": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/HBO_Asia.png/960px-HBO_Asia.png",
+    "url": "https://tinyurl.com/yn3d3rmd",
+    "options": []
+  },
+  "https://dbrb49pjoymg4.cloudfront.net/v1/master/3fec3e5cac39a52b2132f9c66c83dae043dc17d4/prod_default_xumo-ams-aws/master.m3u8?ads.xumo_channelId=99991709": {
+    "name": "Hallmark Movies & More (1080p)",
+    "group": "Movies",
+    "logo": "https://provider-static.plex.tv/epg/cms/production/29af70d1-d3ba-4a16-bc4d-bd99e7e7def4/hallmark-movies-and-more_color.png",
+    "url": "https://dbrb49pjoymg4.cloudfront.net/v1/master/3fec3e5cac39a52b2132f9c66c83dae043dc17d4/prod_default_xumo-ams-aws/master.m3u8?ads.xumo_channelId=99991709",
+    "options": []
+  }
+}
