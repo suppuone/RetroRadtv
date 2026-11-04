@@ -284,5 +284,15 @@
   video.addEventListener('play',()=>{$('tv-toggle').textContent='Ⅱ';$('remote-main-play').classList.add('playing');$('tv-placeholder').hidden=true;});video.addEventListener('pause',()=>{$('tv-toggle').textContent='▶';$('remote-main-play').classList.remove('playing');});video.addEventListener('error',()=>{if(video.currentSrc)notify('This TV stream could not be reached.');});
   document.addEventListener('keydown',event=>{if(event.code==='Space'&&document.activeElement?.tagName!=='INPUT'){event.preventDefault();if(!$('radio-screen').classList.contains('active'))$('tv-toggle').click();else toggleRadio();}if(event.key==='ArrowRight'&&$('tv-screen').classList.contains('active'))stepTV(1);if(event.key==='ArrowLeft'&&$('tv-screen').classList.contains('active'))stepTV(-1);});
   const volume=Number(loadStore(VOLUME_STORE,30));setRadioVolume(Number.isFinite(volume)?Math.min(40,Math.max(0,volume)):30);
+  let pendingInstallPrompt=null;const installButton=$('install-app');
+  window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();pendingInstallPrompt=event;installButton.classList.add('install-ready');});
+  window.addEventListener('appinstalled',()=>{pendingInstallPrompt=null;installButton.classList.remove('install-ready');notify('COOLmagRaTv added to your home screen.');});
+  installButton.addEventListener('click',async()=>{
+    if(pendingInstallPrompt){pendingInstallPrompt.prompt();const choice=await pendingInstallPrompt.userChoice;pendingInstallPrompt=null;if(choice.outcome==='accepted')installButton.classList.remove('install-ready');return;}
+    if(window.matchMedia('(display-mode:standalone)').matches||navigator.standalone){notify('COOLmagRaTv is already installed.');return;}
+    if(/iphone|ipad|ipod/i.test(navigator.userAgent)){notify('In Safari, tap Share, then Add to Home Screen.');return;}
+    notify('Open the browser menu and choose Install app or Add to Home Screen.');
+  });
+  if('serviceWorker' in navigator&&window.isSecureContext){navigator.serviceWorker.register('./service-worker.js',{scope:'./'}).catch(()=>{});}
   formatClock();setInterval(formatClock,30000);fetchData();
 })();

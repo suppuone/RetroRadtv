@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "COOLmagRaTv — Retro Radio & Live TV",
+  "short_name": "COOLmagRaTv",
+  "description": "A touch-friendly retro internet radio and live TV player.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#111419",
+  "theme_color": "#15181c",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -5,15 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#15181c">
   <meta name="description" content="A mobile-friendly retro radio and television player.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="COOLmagRaTv">
   <title>Mobile Retro Radio · COOLmag</title>
-  <link rel="stylesheet" href="style.css?v=34">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="style.css?v=35">
   <script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
-  <script defer src="app.js?v=33"></script>
+  <script defer src="app.js?v=34"></script>
 </head>
 <body>
   <main class="retro-app">
     <header class="topbar">
       <div class="status-cluster"><span class="status-dot"></span><time id="clock">08:30 AM</time><span class="top-separator">•</span><strong>COOLmagRaTv</strong></div>
+      <button id="install-app" class="install-app" type="button" aria-label="Install COOLmagRaTv">⇩ <span>INSTALL</span></button>
       <span id="mode-label" class="mode-label">◉ RADIO MODE</span>
     </header>
 
