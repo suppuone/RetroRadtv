@@ -171,3 +171,7 @@ html,body{overscroll-behavior-x:contain}
 .install-app{display:flex;align-items:center;gap:4px;flex:none;padding:5px 7px;border:1px solid #725b3a;border-radius:7px;background:#1b1d20;color:#dbc58e;font:700 9px 'Barlow Condensed',sans-serif;letter-spacing:.08em;cursor:pointer;touch-action:manipulation}
 .install-app:active,.install-app.install-ready{border-color:#eac36e;color:#ffdc8d;box-shadow:0 0 10px #eac36e55}
 @media(display-mode:standalone),(display-mode:fullscreen){body{min-height:100dvh;padding:0}.retro-app{min-height:100dvh;margin:0 auto;border-radius:0;padding-top:calc(8px + env(safe-area-inset-top));padding-bottom:calc(84px + env(safe-area-inset-bottom))}}
+
+/* Clearer radio and television pictograms in the persistent mobile navigation. */
+.nav-item .nav-icon{display:block;width:23px;height:23px;flex:none;margin:0 0 1px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-item .nav-icon circle:last-child{fill:currentColor;stroke:none}
