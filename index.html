@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#15181c">
+  <meta name="description" content="A mobile-friendly retro radio and television player.">
+  <title>Mobile Retro Radio · COOLmag</title>
+  <link rel="stylesheet" href="style.css?v=34">
+  <script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
+  <script defer src="app.js?v=33"></script>
+</head>
+<body>
+  <main class="retro-app">
+    <header class="topbar">
+      <div class="status-cluster"><span class="status-dot"></span><time id="clock">08:30 AM</time><span class="top-separator">•</span><strong>COOLmagRaTv</strong></div>
+      <span id="mode-label" class="mode-label">◉ RADIO MODE</span>
+    </header>
+
+    <section class="screen active" id="radio-screen" aria-label="Radio player">
+      <div class="screen-heading"><div class="radio-heading-copy"><span class="eyebrow">WORLD RADIO</span><span class="education-note">ONLY FOR EDUCATIONAL PURPOSE</span></div><label class="country-picker"><span>COUNTRY</span><select id="radio-country"><option value="all">All countries</option></select></label></div>
+      <article class="radio-display inset-panel">
+        <div class="radio-art" id="radio-art"><div class="record-mark"><span>COOLmag</span><b>RADIO</b><small>ON AIR</small></div></div>
+        <div class="playing-meta"><button class="mini-star" id="radio-star" aria-label="Add radio station to presets">☆</button><div><h1 id="radio-title">Choose a station</h1><p id="radio-subtitle">Your radio favourites are ready</p></div></div>
+        <div class="equalizer" id="equalizer" aria-label="Audio level animation"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <audio id="radio-audio" preload="none"></audio>
+      </article>
+      <div class="transport" aria-label="Radio controls">
+        <button class="transport-button" id="radio-prev" title="Previous station" aria-label="Previous station">⏮</button>
+        <button class="transport-button main-play" id="radio-play" title="Play" aria-label="Play">▶</button>
+        <button class="transport-button" id="radio-next" title="Next station" aria-label="Next station">⏭</button>
+      </div>
+      <div class="control-labels"><span>CH DOWN</span><span>PLAY / PAUSE</span><span>CH UP</span></div>
+      <div class="dial-section">
+        <label class="dial-wrap" for="radio-volume"><span class="dial-center"><b>VOL</b><small id="volume-number">30</small></span><input id="radio-volume" type="range" min="0" max="100" value="30" aria-label="Radio volume"></label>
+        <span class="dial-caption">VOLUME / PRESET TUNER</span>
+      </div>
+      <div class="station-status" id="radio-status" role="status">READY · SELECT A PRESET OR EXPLORE</div>
+    </section>
+
+    <section class="screen" id="tv-screen" aria-label="Live TV player">
+      <div class="screen-heading"><span class="eyebrow">LIVE TELEVISION</span><label class="country-picker"><span>COUNTRY</span><select id="tv-country"><option value="all">All countries</option></select></label></div>
+      <article class="tv-display inset-panel">
+        <div class="tv-picture"><video id="tv-video" playsinline controls preload="none"></video><div class="tv-placeholder" id="tv-placeholder"><span class="tv-screen-logo">RETRO<span>TV</span></span><small>SELECT A CHANNEL BELOW</small></div><span class="live-tag">● LIVE</span></div>
+        <div class="tv-playing-meta"><div><h1 id="tv-title">Choose a channel</h1><p id="tv-subtitle">Live channels from your presets</p></div><button class="mini-star" id="tv-star" aria-label="Add channel to presets">☆</button></div>
+      </article>
+      <div class="tv-rail-wrap"><button class="rail-arrow" data-rail-scroll="-1" aria-label="Scroll channels left">‹</button><div class="tv-rail" id="tv-rail" aria-label="Swipe or drag to choose a channel"></div><button class="rail-arrow" data-rail-scroll="1" aria-label="Scroll channels right">›</button></div>
+      <div class="tv-actions"><button class="small-control" id="tv-prev" aria-label="Previous channel">⏮</button><button class="small-control" id="tv-toggle" aria-label="Play or pause">▶</button><button class="small-control" id="tv-next" aria-label="Next channel">⏭</button><span class="tv-hint">SWIPE OR DRAG TO BROWSE</span></div>
+      <section class="remote-panel" aria-label="TV remote control">
+        <header class="remote-heading"><span>RETRO TV REMOTE</span><i aria-hidden="true"></i><small>TOUCH · READY</small></header>
+        <div class="remote-device-bar"><label class="remote-channel-picker"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 22h8m-4-3v3"/></svg><select id="remote-channel-select" aria-label="Choose a TV channel"><option value="">Choose a channel</option></select></label><button class="remote-key remote-power" data-remote="power" aria-label="Stop TV"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v10"/><path d="M6.2 5.8a8 8 0 1 0 11.6 0"/></svg></button></div>
+        <div class="remote-main">
+          <div class="remote-rocker remote-volume"><button class="remote-key" data-remote="vol-up" aria-label="Volume up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M18 8v8m-4-4h8"/></svg></button><small>VOL</small><button class="remote-key" data-remote="vol-down" aria-label="Volume down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15 12h8"/></svg></button></div>
+          <div class="remote-dpad" aria-label="Volume, channel and playback controls">
+            <button class="remote-key dpad-up" data-remote="vol-up" aria-label="Volume up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"/></svg></button>
+            <button class="remote-key dpad-left" data-remote="channel-down" aria-label="Previous channel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 18-6-6 6-6"/><path d="M20 18 14 12l6-6"/></svg></button>
+            <button class="remote-key dpad-ok remote-main-play" id="remote-main-play" data-remote="play-pause" aria-label="Play or pause"><svg class="play-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 12 7-12 7z"/></svg><svg class="pause-symbol" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button>
+            <button class="remote-key dpad-right" data-remote="channel-up" aria-label="Next channel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 18 6-6-6-6"/><path d="m4 18 6-6-6-6"/></svg></button>
+            <button class="remote-key dpad-down" data-remote="vol-down" aria-label="Volume down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"/><path d="M19 12h4"/></svg></button>
+          </div>
+          <div class="remote-rocker remote-channel"><button class="remote-key" data-remote="channel-up" aria-label="Channel up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button><small>CH</small><button class="remote-key" data-remote="channel-down" aria-label="Channel down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 10 6 6 6-6"/></svg></button></div>
+        </div>
+        <div class="remote-function-row" aria-label="TV actions"><button class="remote-key" data-remote="mute" aria-label="Mute"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9l6 6m0-6-6 6"/></svg></button><button class="remote-key" data-remote="favorite" id="remote-favorite" aria-label="Toggle favorite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3z"/></svg></button><button class="remote-key" data-remote="fullscreen" aria-label="Toggle fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg></button></div>
+        <div class="remote-shortcuts"><span>QUICK PRESETS</span><div id="remote-presets"></div></div>
+      </section>
+    </section>
+
+    <section class="screen" id="presets-screen" aria-label="Presets and favourites">
+      <div class="screen-heading"><div><span class="eyebrow">YOUR COLLECTION</span><h1 class="screen-title">Presets &amp; Favorites</h1></div><div class="preset-priority-control" id="preset-priority-control" hidden><small id="preset-selection-label">SELECT A TV CHANNEL</small><div class="priority-pad" aria-label="Move selected channel in the preset order"><button type="button" data-priority-x="0" data-priority-y="-1" aria-label="Move up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg></button><button type="button" data-priority-x="-1" data-priority-y="0" aria-label="Move left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m0 0 6-6m-6 6 6 6"/></svg></button><span aria-hidden="true">✦</span><button type="button" data-priority-x="1" data-priority-y="0" aria-label="Move right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></button><button type="button" data-priority-x="0" data-priority-y="1" aria-label="Move down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0 6-6m-6 6-6-6"/></svg></button></div></div></div>
+      <div class="segmented"><button class="selected" data-preset-mode="radio">♫ RADIO <b id="preset-radio-count">0</b></button><button data-preset-mode="tv">▣ LIVE TV <b id="preset-tv-count">0</b></button></div>
+      <div class="preset-grid" id="preset-grid"></div>
+      <p class="footnote">Tap a preset to tune in · Use ★ to save or remove</p>
+    </section>
+
+    <section class="screen" id="explore-screen" aria-label="Explore categories">
+      <div class="screen-heading"><div><span class="eyebrow">BROWSE THE LIBRARY</span><h1 class="screen-title">Explore Channels</h1></div></div>
+      <div class="browser-source"><button class="selected" type="button" data-browser-source="library">MY LIBRARY</button><button type="button" data-browser-source="online">DISCOVER ONLINE</button></div>
+      <div class="segmented browser-kind"><button class="selected" type="button" data-browser-kind="radio">♫ RADIO <b id="explore-radio-count">0</b></button><button type="button" data-browser-kind="tv">▣ LIVE TV <b id="explore-tv-count">0</b></button></div>
+      <div class="browser-filters">
+        <label><span>SEARCH</span><input id="explore-search" type="search" placeholder="Channel name or language"></label>
+        <label><span>COUNTRY</span><select id="explore-country"><option value="all">All countries</option></select></label>
+        <label><span>GENRE</span><select id="explore-genre"><option value="all">All genres</option></select></label>
+        <label><span>SORT BY</span><select id="explore-sort"><option value="genre">Genre</option><option value="country">Country</option><option value="name">Channel name</option></select></label>
+      </div>
+      <div class="online-search-row" id="online-search-row" hidden><button class="discover-button" id="discover-online" type="button">SEARCH ONLINE CATALOG</button><span id="discovery-status" role="status"></span></div>
+      <p class="browser-summary" id="browser-summary" aria-live="polite"></p>
+      <div class="explore-results" id="explore-results"></div>
+    </section>
+
+    <nav class="bottom-nav" aria-label="Main sections">
+      <button class="nav-item active" data-screen="radio-screen"><span>▣</span>RADIO</button>
+      <button class="nav-item" data-screen="tv-screen"><span>▣</span>LIVE TV</button>
+      <button class="nav-item" data-screen="presets-screen"><span>★</span>PRESETS</button>
+      <button class="nav-item" data-screen="explore-screen"><span>⌕</span>EXPLORE</button>
+    </nav>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
+
