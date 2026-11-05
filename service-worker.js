@@ -1,9 +1,12 @@
-const CACHE_NAME = 'coolmag-retro-radio-v1.0.3';
+const CACHE_NAME = 'coolmag-retro-radio-v1.0.6';
 const APP_FILES = [
   './',
   './index.html',
-  './style.css?v=36',
-  './app.js?v=35',
+  './admin.html',
+  './style.css?v=39',
+  './app.js?v=39',
+  './admin.js?v=1.0.1',
+  './admin-entry.js?v=1.0.0',
   './manifest.webmanifest',
   './icon.svg',
   './data/radio-presets.json',

@@ -2,7 +2,7 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const safe = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  const RADIO_STORE='retrotvra.radio-presets.v1',TV_STORE='retrotvra.tv-presets.v1',TV_ORDER_STORE='retrotvra.tv-order.v1',VOLUME_STORE='retrotvra.volume.v1',GLOW_STORE='retrotvra.glow-mode.v1';
+  const RADIO_STORE='retrotvra.radio-presets.v1',TV_STORE='retrotvra.tv-presets.v1',TV_ORDER_STORE='retrotvra.tv-order.v1',RADIO_HIDDEN_STORE='retrotvra.radio-hidden.v1',TV_HIDDEN_STORE='retrotvra.tv-hidden.v1',VOLUME_STORE='retrotvra.volume.v1',GLOW_STORE='retrotvra.glow-mode.v1';
   let radios=[],tvs=[],radioPresets={},tvPresets={},radioIndex=-1,tvIndex=-1,presetMode='radio',selectedTVPresetKey=null,browserKind='radio',browserSource='library',onlineRows=[],onlineTVCache=null,onlineCountries=[],onlineGenres=[],onlineOffset=0,onlineVisibleLimit=100,onlineHasMore=false,onlineSearchDone=false,hls=null,toastTimer=null,dragState=null;
   const audio=$('radio-audio'),video=$('tv-video');
   let glowMode='color';try{glowMode=localStorage.getItem(GLOW_STORE)||'color';}catch{}
@@ -90,9 +90,13 @@
     const fill=(id,rows)=>{const countries=[...new Set(rows.map(s=>String(s.country||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b));$(id).innerHTML='<option value="all">All countries</option>'+countries.map(name=>`<option value="${safe(name)}">${safe(name)}</option>`).join('');};
     fill('radio-country',radios);fill('tv-country',tvs);
   }
-  function mergeInitialPresets(remote,storeKey){
-    const saved=loadStore(storeKey,{}),merged={...remote};
-    for(const [key,item] of Object.entries(saved))if(item&&typeof item==='object')merged[key]=item;
+  function mergeInitialPresets(remote,storeKey,type){
+    const saved=loadStore(storeKey,{}),hiddenKey=type==='tv'?TV_HIDDEN_STORE:RADIO_HIDDEN_STORE,hidden=new Set(loadStore(hiddenKey,[])),merged={...remote};
+    for(const key of hidden)delete merged[key];
+    for(const [key,item] of Object.entries(saved))if(item&&typeof item==='object'&&!hidden.has(key)){
+      if(Object.prototype.hasOwnProperty.call(remote,key))merged[key]={...item,...remote[key]};
+      else if(item._kind===type)merged[key]=item;
+    }
     return merged;
   }
   function applyTVOrder(presets){
@@ -117,8 +121,8 @@
       {name:'France 24 English',group:'World News',country:'France',url:'https://live.france24.com/hls/live/2037220/F24_EN_HI_HLS/master.m3u8',logo:''},
       {name:'DW English',group:'World News',country:'Germany',url:'https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/stream04/streamPlaylist.m3u8',logo:''}
     ];
-    radioPresets=mergeInitialPresets(Object.fromEntries(radios.map(s=>[stationKey(s),s])),RADIO_STORE);
-    tvPresets=applyTVOrder(mergeInitialPresets(Object.fromEntries(tvs.map(s=>[s.url,s])),TV_STORE));
+    radioPresets=mergeInitialPresets(Object.fromEntries(radios.map(s=>[stationKey(s),s])),RADIO_STORE,'radio');
+    tvPresets=applyTVOrder(mergeInitialPresets(Object.fromEntries(tvs.map(s=>[s.url,s])),TV_STORE,'tv'));
     saveStore(RADIO_STORE,radioPresets);saveStore(TV_STORE,tvPresets);
     fillCountries();populateExploreFilters();renderPresets();renderTVRail();renderRemotePresets();renderRadioDisplay();renderExplore();
   }
@@ -156,8 +160,8 @@
   function stopRadio(){audio.pause();audio.removeAttribute('src');audio.load();$('radio-play').textContent='▶';$('radio-play').title='Play';$('equalizer').classList.remove('playing');$('radio-status').textContent='STOPPED';}
   function stepRadio(direction){const rows=currentRows('radio');if(!rows.length)return;const current=radioCurrent();let index=rows.findIndex(s=>stationKey(s)===stationKey(current||{}));index=(index+direction+rows.length)%rows.length;playRadio(rows[index]);}
   function togglePreset(kind,station){
-    if(kind==='radio'){const key=stationKey(station);if(radioPresets[key])delete radioPresets[key];else radioPresets[key]=station;saveStore(RADIO_STORE,radioPresets);drawRadio();if(!audio.paused){stopSoundRays();startSoundRays();}renderPresets();renderExplore();}
-    else{const key=station.url;if(tvPresets[key])delete tvPresets[key];else tvPresets[key]=station;saveStore(TV_STORE,tvPresets);saveStore(TV_ORDER_STORE,Object.keys(tvPresets));drawTV();renderPresets();renderTVRail();renderRemotePresets();renderExplore();}
+    if(kind==='radio'){const key=stationKey(station),hidden=new Set(loadStore(RADIO_HIDDEN_STORE,[])),isShared=radios.some(item=>stationKey(item)===key);if(radioPresets[key]){delete radioPresets[key];if(isShared)hidden.add(key);}else{radioPresets[key]=station;hidden.delete(key);}saveStore(RADIO_HIDDEN_STORE,[...hidden]);saveStore(RADIO_STORE,radioPresets);drawRadio();if(!audio.paused){stopSoundRays();startSoundRays();}renderPresets();renderExplore();}
+    else{const key=station.url,hidden=new Set(loadStore(TV_HIDDEN_STORE,[])),isShared=tvs.some(item=>item.url===key);if(tvPresets[key]){delete tvPresets[key];if(isShared)hidden.add(key);}else{tvPresets[key]=station;hidden.delete(key);}saveStore(TV_HIDDEN_STORE,[...hidden]);saveStore(TV_STORE,tvPresets);saveStore(TV_ORDER_STORE,Object.keys(tvPresets));drawTV();renderPresets();renderTVRail();renderRemotePresets();renderExplore();}
   }
   function moveSelectedTVPreset(dx,dy){
     const rows=currentRows('tv'),from=rows.findIndex(item=>item.url===selectedTVPresetKey);if(from<0)return;
@@ -344,9 +348,13 @@
   video.addEventListener('play',()=>{$('tv-toggle').textContent='Ⅱ';$('remote-main-play').classList.add('playing');$('tv-placeholder').hidden=true;});video.addEventListener('pause',()=>{$('tv-toggle').textContent='▶';$('remote-main-play').classList.remove('playing');});video.addEventListener('error',()=>{if(video.currentSrc)notify('This TV stream could not be reached.');});
   document.addEventListener('keydown',event=>{if(event.code==='Space'&&document.activeElement?.tagName!=='INPUT'){event.preventDefault();if(!$('radio-screen').classList.contains('active'))$('tv-toggle').click();else toggleRadio();}if(event.key==='ArrowRight'&&$('tv-screen').classList.contains('active'))stepTV(1);if(event.key==='ArrowLeft'&&$('tv-screen').classList.contains('active'))stepTV(-1);});
   const volume=Number(loadStore(VOLUME_STORE,30));setRadioVolume(Number.isFinite(volume)?Math.min(40,Math.max(0,volume)):30);
-  let pendingInstallPrompt=null;const installButton=$('install-app');
-  window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();pendingInstallPrompt=event;installButton.classList.add('install-ready');});
-  window.addEventListener('appinstalled',()=>{pendingInstallPrompt=null;installButton.classList.remove('install-ready');notify('COOLmagRaTv added to your home screen.');});
+  let pendingInstallPrompt=null;const installButton=$('install-app'),installedModes=['standalone','minimal-ui','fullscreen','window-controls-overlay'].map(mode=>window.matchMedia(`(display-mode: ${mode})`));
+  const installedBefore=()=>{try{return localStorage.getItem('retrotvra.installed.v1')==='true';}catch{return false;}};
+  const isInstalledApp=()=>Boolean(navigator.standalone)||installedModes.some(query=>query.matches)||installedBefore();
+  const updateInstallButton=()=>{if(isInstalledApp()){installButton.hidden=true;pendingInstallPrompt=null;}else installButton.hidden=false;};
+  updateInstallButton();installedModes.forEach(query=>query.addEventListener?.('change',updateInstallButton));
+  window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();try{localStorage.removeItem('retrotvra.installed.v1');}catch{}pendingInstallPrompt=event;if(!installedModes.some(query=>query.matches)&&!navigator.standalone){installButton.hidden=false;installButton.classList.add('install-ready');}});
+  window.addEventListener('appinstalled',()=>{pendingInstallPrompt=null;installButton.classList.remove('install-ready');installButton.hidden=true;try{localStorage.setItem('retrotvra.installed.v1','true');}catch{}notify('COOLmagRaTv added to your home screen.');});
   installButton.addEventListener('click',async()=>{
     if(pendingInstallPrompt){pendingInstallPrompt.prompt();const choice=await pendingInstallPrompt.userChoice;pendingInstallPrompt=null;if(choice.outcome==='accepted')installButton.classList.remove('install-ready');return;}
     if(window.matchMedia('(display-mode:standalone)').matches||navigator.standalone){notify('COOLmagRaTv is already installed.');return;}

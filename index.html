@@ -13,14 +13,16 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
-  <link rel="stylesheet" href="style.css?v=37">
+  <link rel="stylesheet" href="style.css?v=39">
   <script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
-  <script defer src="app.js?v=37"></script>
+  <script defer src="app.js?v=39"></script>
+  <script defer src="admin-entry.js?v=1.0.0"></script>
 </head>
 <body>
   <main class="retro-app">
     <header class="topbar">
-      <div class="status-cluster"><span class="status-dot"></span><time id="clock">08:30 AM</time><span class="top-separator">•</span><strong>COOLmagRaTv</strong></div>
+      <div class="status-cluster"><span class="status-dot"></span><time id="clock">08:30 AM</time><span class="top-separator">•</span><button id="admin-discover" class="brand-title" type="button" aria-label="Tap seven times to reveal administrator access">COOLmagRaTv</button></div>
+      <a id="admin-open" class="admin-reveal" href="admin.html" target="_blank" rel="noopener noreferrer" hidden>ADMIN ↗</a>
       <button id="install-app" class="install-app" type="button" aria-label="Install COOLmagRaTv">⇩ <span>INSTALL</span></button>
       <span id="mode-label" class="mode-label">◉ RADIO MODE</span>
     </header>

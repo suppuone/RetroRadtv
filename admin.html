@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#15181c">
+  <title>Station Admin · RetroRadtv</title>
+  <link rel="stylesheet" href="style.css?v=39">
+  <script defer src="admin.js?v=1.0.1"></script>
+</head>
+<body>
+  <div class="admin-backdrop">
+    <section class="admin-dialog" role="main" aria-labelledby="admin-title" tabindex="-1">
+      <header class="admin-header"><div><span class="admin-kicker">PRIVATE CATALOGUE TOOLS</span><h1 id="admin-title">Station admin</h1></div><button class="admin-close" id="admin-close" type="button" aria-label="Return to player">×</button></header>
+      <div class="admin-access" id="admin-access">
+        <p>Connect to the RetroRadtv repository to manage the shared Radio and TV catalogues. Use a fine-grained GitHub token restricted to <b>suppuone/RetroRadtv</b> with Contents read/write access. The token stays in this open tab and is cleared when you return to the player.</p>
+        <div class="admin-connect-grid"><label>Repository<input id="admin-repo" value="suppuone/RetroRadtv" autocomplete="off"></label><label>Branch<input id="admin-branch" value="main" autocomplete="off"></label><label class="admin-token-field">GitHub token<input id="admin-token" type="password" autocomplete="off" spellcheck="false" placeholder="Paste token for this session"></label><button id="admin-connect" class="admin-primary" type="button">CONNECT</button></div>
+        <p class="admin-status" id="admin-status" role="status">Your token is never written into the app files or browser storage.</p>
+      </div>
+      <div class="admin-workspace" id="admin-workspace" hidden>
+        <p class="admin-status admin-workspace-status" id="admin-workspace-status" role="status" aria-live="polite"></p>
+        <div class="admin-toolbar"><div class="admin-tabs" role="tablist"><button type="button" data-admin-type="radio" class="active">RADIO <b id="admin-radio-count">0</b></button><button type="button" data-admin-type="tv">LIVE TV <b id="admin-tv-count">0</b></button></div><div class="admin-actions"><button type="button" id="admin-undo" class="admin-secondary" disabled>UNDO</button><button type="button" id="admin-import" class="admin-secondary">IMPORT</button><button type="button" id="admin-export-json" class="admin-secondary">EXPORT JSON</button><button type="button" id="admin-export-m3u" class="admin-secondary">EXPORT M3U</button><input id="admin-file" type="file" accept=".json,.m3u,.m3u8,.txt,application/json,audio/x-mpegurl" hidden></div></div>
+        <div class="admin-columns">
+          <section class="admin-editor-card"><div class="admin-card-heading"><div><span class="admin-kicker">EDIT ENTRY</span><h2 id="admin-editor-heading">Add a radio station</h2></div><button type="button" id="admin-new" class="admin-secondary">＋ NEW</button></div>
+            <div class="admin-form-grid"><label>Station / channel name<input id="admin-name" maxlength="120" placeholder="Name shown in the app"></label><label>Country<input id="admin-country" maxlength="80" placeholder="e.g. India"></label><label class="admin-wide">Stream URL<input id="admin-url" type="url" inputmode="url" placeholder="https://…"></label><label>Genre / category<input id="admin-group" maxlength="80" placeholder="Music, News, Education…"></label><label>Logo image URL<input id="admin-logo" type="url" inputmode="url" placeholder="https://…"></label><label class="admin-wide">Station tags / notes<input id="admin-tags" maxlength="180" placeholder="Optional tags or short notes"></label></div>
+            <div class="admin-preview-wrap"><div class="admin-preview-label">CARD PREVIEW</div><div class="admin-preview" id="admin-preview"><div class="admin-preview-art"><span id="admin-preview-initials">FM</span><img id="admin-preview-logo" alt="Station logo preview" hidden></div><div><b id="admin-preview-name">Station name</b><small id="admin-preview-meta">Country · Category</small></div><span class="admin-preview-kind" id="admin-preview-kind">RADIO</span></div></div>
+            <div class="admin-form-actions"><button type="button" id="admin-delete" class="admin-danger" disabled>DELETE</button><span id="admin-validation" class="admin-validation" aria-live="polite"></span><button type="button" id="admin-save" class="admin-primary">SAVE DRAFT</button></div>
+          </section>
+          <section class="admin-library-card"><div class="admin-card-heading"><div><span class="admin-kicker">SHARED LIBRARY</span><h2>Find a station</h2></div><span class="admin-total" id="admin-list-count">0 entries</span></div><label class="admin-search">⌕<input id="admin-search" type="search" placeholder="Search name, URL, country…"></label><div class="admin-list" id="admin-list"></div><div class="admin-order-hint">Select an entry to edit. Use ↑ ↓ to change its order.</div></section>
+        </div>
+        <footer class="admin-publish-bar"><div><span class="admin-kicker">PUBLISH REVIEW</span><p id="admin-diff">No draft changes.</p></div><button type="button" id="admin-publish" class="admin-primary" disabled>PUBLISH TO GITHUB</button></footer>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
