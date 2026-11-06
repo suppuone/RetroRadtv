@@ -3,64 +3,90 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#15181c">
+  <meta name="theme-color" content="#111419">
   <meta name="description" content="A mobile-friendly retro radio and television player.">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="COOLmagRaTv">
-  <title>Mobile Retro Radio · COOLmag</title>
+  <title>RetroRadtv 2.0 · COOLmag Radio &amp; TV</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="icon.svg">
-  <link rel="stylesheet" href="style.css?v=39">
+  <link rel="stylesheet" href="style.css?v=rectified-1">
   <script defer src="https://cdn.jsdelivr.net/npm/hls.js@1.5.18/dist/hls.min.js"></script>
-  <script defer src="app.js?v=39"></script>
-  <script defer src="admin-entry.js?v=1.0.0"></script>
+  <script defer src="app.js?v=rectified-1"></script>
+  <script defer src="admin-entry.js?v=1.0.1"></script>
 </head>
 <body>
+<section class="welcome-splash-v2" id="welcome-splash-v2" role="dialog" aria-modal="true" aria-labelledby="splash-v2-title" aria-describedby="splash-v2-note">
+    <canvas class="splash-confetti" id="splash-confetti" aria-hidden="true"></canvas>
+    <div class="card-wrapper" id="cardContainer">
+      <div class="glow-card" id="card">
+        <div class="card-inner">
+          <img class="welcome-splash-v2-logo" id="splash-v2-logo-image" alt="" hidden>
+          <svg class="welcome-radio-icon" id="splash-v2-default-icon" viewBox="0 0 72 72" aria-hidden="true"><circle class="radio-loop-wave wave-one" cx="36" cy="34" r="11"/><circle class="radio-loop-wave wave-two" cx="36" cy="34" r="19"/><circle class="radio-loop-wave wave-three" cx="36" cy="34" r="27"/><circle cx="36" cy="34" r="3.5" fill="#67e8f9" stroke="none"/><path d="M36 40v16m-9 2h18" stroke="#67e8f9" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <h1 id="splash-v2-title">COOL RADIO &amp; TV</h1>
+          <p id="splash-v2-note"><span id="splash-v2-line1">ONLY FOR EDUCATIONAL PURPOSE</span><br><span id="splash-v2-line2">PRIVATE USE · NOT TO BE SHARED</span></p>
+          <div id="splash-v2-continue" class="splash-wait" role="status">Wait.....</div>
+        </div>
+      </div>
+    </div>
+  </section>
   <main class="retro-app">
     <header class="topbar">
       <div class="status-cluster"><span class="status-dot"></span><time id="clock">08:30 AM</time><span class="top-separator">•</span><button id="admin-discover" class="brand-title" type="button" aria-label="Tap seven times to reveal administrator access">COOLmagRaTv</button></div>
       <a id="admin-open" class="admin-reveal" href="admin.html" target="_blank" rel="noopener noreferrer" hidden>ADMIN ↗</a>
       <button id="install-app" class="install-app" type="button" aria-label="Install COOLmagRaTv">⇩ <span>INSTALL</span></button>
+      <button id="settings-open" class="settings-open" type="button" aria-label="Open settings" title="Settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.14 12.94c.04-.3.06-.61.06-.94s-.02-.64-.07-.94l2.03-1.58a.5.5 0 0 0 .11-.63l-1.92-3.32a.5.5 0 0 0-.61-.22l-2.39.96a7.6 7.6 0 0 0-1.62-.87l-.36-2.55a.5.5 0 0 0-.49-.42h-3.84a.5.5 0 0 0-.49.42L9.18 5.4c-.59.2-1.13.5-1.62.87l-2.39-.96a.5.5 0 0 0-.61.22L2.64 8.85a.5.5 0 0 0 .11.63l2.03 1.58c-.05.3-.08.62-.08.94s.03.64.08.94l-2.03 1.58a.5.5 0 0 0-.11.63l1.92 3.32a.5.5 0 0 0 .61.22l2.39-.96c.49.37 1.03.67 1.62.87l.36 2.55a.5.5 0 0 0 .49.42h3.84a.5.5 0 0 0 .49-.42l.36-2.55c.59-.2 1.13-.5 1.62-.87l2.39.96a.5.5 0 0 0 .61-.22l1.92-3.32a.5.5 0 0 0-.11-.63l-2.03-1.58ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button>
       <span id="mode-label" class="mode-label">◉ RADIO MODE</span>
     </header>
 
+    <div class="outer-panel-clock" id="outer-panel-clock" aria-label="Local date and time"><div class="radio-clock-card" aria-label="Local date and time"><div class="radio-clock-line"><span id="radio-clock-day">Th</span><strong id="radio-clock-time">9:47</strong><small id="radio-clock-meridiem">AM</small></div><time id="radio-clock-date">AUG 29, 2024</time></div></div>
+    <div class="mode-switch" role="tablist" aria-label="Media mode"><button type="button" class="mode-tab selected" data-mode-screen="radio-screen" role="tab" aria-selected="true"><span aria-hidden="true">◉</span> RADIO</button><button type="button" class="mode-tab" data-mode-screen="tv-screen" role="tab" aria-selected="false"><span aria-hidden="true">▣</span> TV</button></div>
     <section class="screen active" id="radio-screen" aria-label="Radio player">
       <div class="screen-heading"><div class="radio-heading-copy"><span class="eyebrow">WORLD RADIO</span><span class="education-note">ONLY FOR EDUCATIONAL PURPOSE</span></div><label class="country-picker"><span>COUNTRY</span><select id="radio-country"><option value="all">All countries</option></select></label></div>
       <article class="radio-display inset-panel">
-        <div class="radio-art" id="radio-art"><div class="record-mark"><span>COOLmag</span><b>RADIO</b><small>ON AIR</small></div></div>
-        <div class="playing-meta"><button class="mini-star" id="radio-star" aria-label="Add radio station to presets">☆</button><div><h1 id="radio-title">Choose a station</h1><p id="radio-subtitle">Your radio favourites are ready</p></div></div>
+        <div class="radio-art" id="radio-art"><div class="record-mark"><span class="radio-signal-icon" aria-hidden="true">◉</span><b class="radio-center-title">Choose a station</b><small class="radio-center-country">WORLD RADIO</small><div class="record-equalizer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div>
+      <section class="radio-station-shortcuts" aria-label="Quick tune stations"><div id="radio-station-strip" class="radio-station-strip"></div></section>
+        <div class="playing-meta radio-news-ticker" aria-label="National news headlines"><div class="ticker-window"><div class="ticker-track" id="radio-news-track"><span class="ticker-headline is-current">Loading the latest national news…</span></div></div></div>
         <div class="equalizer" id="equalizer" aria-label="Audio level animation"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
         <audio id="radio-audio" preload="none"></audio>
       </article>
-      <div class="glow-mode-switch" role="group" aria-label="Radio glow colour"><span>GLOW</span><button type="button" data-glow-mode="color">COLOR</button><button type="button" data-glow-mode="warm">WARM</button><button type="button" data-glow-mode="white">WHITE</button></div>
+
       <div class="transport" aria-label="Radio controls">
         <button class="transport-button" id="radio-prev" title="Previous station" aria-label="Previous station">⏮</button>
         <button class="transport-button main-play" id="radio-play" title="Play" aria-label="Play">▶</button>
         <button class="transport-button" id="radio-next" title="Next station" aria-label="Next station">⏭</button>
       </div>
       <div class="control-labels"><span>CH DOWN</span><span>PLAY / PAUSE</span><span>CH UP</span></div>
-      <div class="dial-section">
-        <label class="dial-wrap" for="radio-volume"><span class="dial-center"><b>VOL</b><small id="volume-number">30</small></span><input id="radio-volume" type="range" min="0" max="100" value="30" aria-label="Radio volume"></label>
-        <span class="dial-caption">VOLUME / PRESET TUNER</span>
-      </div>
+      <div class="radio-volume-row" aria-label="Radio volume control"><button type="button" class="radio-volume-icon" data-radio-volume-action="mute" aria-label="Mute radio"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9a4 4 0 0 1 0 6m3-9a8 8 0 0 1 0 12"/></svg></button><label class="radio-volume-track" id="radio-volume-track" for="radio-volume"><span>VOL</span><input id="radio-volume" type="range" min="0" max="100" value="30" aria-label="Radio volume"><b id="volume-number">30</b></label><button type="button" class="radio-volume-icon" data-radio-volume-action="up" aria-label="Volume up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 12h6m-3-3v6"/></svg></button></div>
       <div class="station-status" id="radio-status" role="status">READY · SELECT A PRESET OR EXPLORE</div>
     </section>
 
-    <section class="screen" id="tv-screen" aria-label="Live TV player">
-      <div class="screen-heading"><span class="eyebrow">LIVE TELEVISION</span><label class="country-picker"><span>COUNTRY</span><select id="tv-country"><option value="all">All countries</option></select></label></div>
-      <article class="tv-display inset-panel">
-        <div class="tv-picture"><video id="tv-video" playsinline controls preload="none"></video><div class="tv-placeholder" id="tv-placeholder"><span class="tv-screen-logo">RETRO<span>TV</span></span><small>SELECT A CHANNEL BELOW</small></div><span class="live-tag">● LIVE</span></div>
-        <div class="tv-playing-meta"><div><h1 id="tv-title">Choose a channel</h1><p id="tv-subtitle">Live channels from your presets</p></div><button class="mini-star" id="tv-star" aria-label="Add channel to presets">☆</button></div>
+    <section class="screen" id="tv-screen" aria-label="TV player">
+      <div class="screen-heading"><span class="eyebrow">TELEVISION</span><div class="tv-display-header"><div class="tv-playing-meta"><div><h1 id="tv-title">Choose a channel</h1><p id="tv-subtitle">Live channels from your presets</p></div><button class="mini-star" id="tv-star" aria-label="Add channel to presets">☆</button></div></div><label class="country-picker"><span>COUNTRY</span><select id="tv-country"><option value="all">All countries</option></select></label></div>
+      <div class="tv-fullscreen-shell" id="tv-fullscreen-shell">
+      <article class="tv-display inset-panel" id="tv-display">
+
+        <div class="fullscreen-titlebar"><b id="fullscreen-channel-name">Choose a channel</b><span id="fullscreen-channel-country">TV</span></div>
+        <div class="tv-picture"><video id="tv-video" playsinline controls preload="none"></video><div class="tv-placeholder" id="tv-placeholder"><span class="tv-screen-logo">RETRO<span>TV</span></span><small>SELECT A CHANNEL BELOW</small></div></div>
+        <div class="fullscreen-side-controls" role="group" aria-label="Fullscreen TV controls">
+          <button type="button" data-fullscreen-action="home" class="fullscreen-home">HOME</button>
+          <button type="button" data-fullscreen-action="previous" aria-label="Previous channel" title="Previous channel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5v14M19 6l-9 6 9 6z"/></svg></button>
+          <button type="button" data-fullscreen-action="play" aria-label="Pause or play" title="Pause or play"><svg class="fs-play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 12 7-12 7z"/></svg><svg class="fs-pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg></button>
+          <button type="button" data-fullscreen-action="next" aria-label="Next channel" title="Next channel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 5v14M5 6l9 6-9 6z"/></svg></button>
+          <button type="button" data-fullscreen-action="mute" aria-label="Mute" title="Mute"><svg class="fs-sound-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9a4 4 0 0 1 0 6m3-9a8 8 0 0 1 0 12"/></svg><svg class="fs-muted-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9l6 6m0-6-6 6"/></svg></button>
+        </div>
+        <div class="tv-rail-wrap"><div class="tv-rail" id="tv-rail" aria-label="Swipe or drag to choose a channel"></div></div>
+
       </article>
-      <div class="tv-rail-wrap"><button class="rail-arrow" data-rail-scroll="-1" aria-label="Scroll channels left">‹</button><div class="tv-rail" id="tv-rail" aria-label="Swipe or drag to choose a channel"></div><button class="rail-arrow" data-rail-scroll="1" aria-label="Scroll channels right">›</button></div>
+      </div>
       <div class="tv-actions"><button class="small-control" id="tv-prev" aria-label="Previous channel">⏮</button><button class="small-control" id="tv-toggle" aria-label="Play or pause">▶</button><button class="small-control" id="tv-next" aria-label="Next channel">⏭</button><span class="tv-hint">SWIPE OR DRAG TO BROWSE</span></div>
       <section class="remote-panel" aria-label="TV remote control">
         <header class="remote-heading"><span>RETRO TV REMOTE</span><i aria-hidden="true"></i><small>TOUCH · READY</small></header>
         <div class="remote-device-bar"><label class="remote-channel-picker"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 22h8m-4-3v3"/></svg><select id="remote-channel-select" aria-label="Choose a TV channel"><option value="">Choose a channel</option></select></label><button class="remote-key remote-power" data-remote="power" aria-label="Stop TV"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v10"/><path d="M6.2 5.8a8 8 0 1 0 11.6 0"/></svg></button></div>
-        <div class="remote-main">
+        <div class="remote-main"><output id="tv-volume-number" class="remote-number remote-volume-number" aria-label="TV volume">5</output><output id="tv-channel-number" class="remote-number remote-channel-number" aria-label="TV channel number">—</output>
           <div class="remote-rocker remote-volume"><button class="remote-key" data-remote="vol-up" aria-label="Volume up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M18 8v8m-4-4h8"/></svg></button><small>VOL</small><button class="remote-key" data-remote="vol-down" aria-label="Volume down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15 12h8"/></svg></button></div>
           <div class="remote-dpad" aria-label="Volume, channel and playback controls">
             <button class="remote-key dpad-up" data-remote="vol-up" aria-label="Volume up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9a5 5 0 0 1 0 6m3-9a9 9 0 0 1 0 12"/></svg></button>
@@ -71,24 +97,25 @@
           </div>
           <div class="remote-rocker remote-channel"><button class="remote-key" data-remote="channel-up" aria-label="Channel up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button><small>CH</small><button class="remote-key" data-remote="channel-down" aria-label="Channel down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 10 6 6 6-6"/></svg></button></div>
         </div>
-        <div class="remote-function-row" aria-label="TV actions"><button class="remote-key" data-remote="mute" aria-label="Mute"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9l6 6m0-6-6 6"/></svg></button><button class="remote-key" data-remote="favorite" id="remote-favorite" aria-label="Toggle favorite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3z"/></svg></button><button class="remote-key" data-remote="fullscreen" aria-label="Toggle fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg></button></div>
+        <div class="remote-function-row" aria-label="TV actions"><button class="remote-key" data-remote="mute" aria-label="Mute"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15 9l6 6m0-6-6 6"/></svg></button><button class="remote-key" data-remote="favorite" id="remote-favorite" aria-label="Toggle favorite"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3z"/></svg></button><button class="remote-key" data-remote="fullscreen" aria-label="Fullscreen TV; landscape on mobile" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3"/></svg></button></div>
         <div class="remote-shortcuts"><span>QUICK PRESETS</span><div id="remote-presets"></div></div>
       </section>
     </section>
 
     <section class="screen" id="presets-screen" aria-label="Presets and favourites">
-      <div class="screen-heading"><div><span class="eyebrow">YOUR COLLECTION</span><h1 class="screen-title">Presets &amp; Favorites</h1></div><div class="preset-priority-control" id="preset-priority-control" hidden><small id="preset-selection-label">SELECT A TV CHANNEL</small><div class="priority-pad" aria-label="Move selected channel in the preset order"><button type="button" data-priority-x="0" data-priority-y="-1" aria-label="Move up"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m0 0-6 6m6-6 6 6"/></svg></button><button type="button" data-priority-x="-1" data-priority-y="0" aria-label="Move left"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m0 0 6-6m-6 6 6 6"/></svg></button><span aria-hidden="true">✦</span><button type="button" data-priority-x="1" data-priority-y="0" aria-label="Move right"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></button><button type="button" data-priority-x="0" data-priority-y="1" aria-label="Move down"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14m0 0 6-6m-6 6-6-6"/></svg></button></div></div></div>
-      <div class="segmented"><button class="selected" data-preset-mode="radio">♫ RADIO <b id="preset-radio-count">0</b></button><button data-preset-mode="tv">▣ LIVE TV <b id="preset-tv-count">0</b></button></div>
+      <div class="screen-heading"><div><span class="eyebrow">YOUR COLLECTION</span><h1 class="screen-title">Presets &amp; Favorites</h1></div><div class="preset-priority-control" id="preset-priority-control" hidden><small id="preset-selection-label">SELECT A TV CHANNEL</small></div></div>
+      <div class="segmented preset-tabs"><button class="selected" data-preset-mode="radio">♫ RADIO <b id="preset-radio-count">0</b></button><button data-preset-mode="tv">▣ TV <b id="preset-tv-count">0</b></button><button data-preset-mode="recent">◷ RECENT</button></div>
       <div class="preset-grid" id="preset-grid"></div>
-      <p class="footnote">Tap a preset to tune in · Use ★ to save or remove</p>
+      <p class="footnote" id="preset-footnote">Tap a preset to tune in · Use ★ to save or remove <button type="button" id="clear-recent" hidden>Clear recent history</button></p>
     </section>
 
     <section class="screen" id="explore-screen" aria-label="Explore categories">
       <div class="screen-heading"><div><span class="eyebrow">BROWSE THE LIBRARY</span><h1 class="screen-title">Explore Channels</h1></div></div>
       <div class="browser-source"><button class="selected" type="button" data-browser-source="library">MY LIBRARY</button><button type="button" data-browser-source="online">DISCOVER ONLINE</button></div>
-      <div class="segmented browser-kind"><button class="selected" type="button" data-browser-kind="radio">♫ RADIO <b id="explore-radio-count">0</b></button><button type="button" data-browser-kind="tv">▣ LIVE TV <b id="explore-tv-count">0</b></button></div>
+      <div class="segmented browser-kind"><button class="selected" type="button" data-browser-kind="radio">♫ RADIO <b id="explore-radio-count">0</b></button><button type="button" data-browser-kind="tv">▣ TV <b id="explore-tv-count">0</b></button></div>
       <div class="browser-filters">
         <label><span>SEARCH</span><input id="explore-search" type="search" placeholder="Channel name or language"></label>
+        <label><span>LANGUAGE</span><select id="explore-language"><option value="all">All languages</option><option value="Tamil">Tamil</option><option value="Hindi">Hindi</option><option value="English">English</option></select></label>
         <label><span>COUNTRY</span><select id="explore-country"><option value="all">All countries</option></select></label>
         <label><span>GENRE</span><select id="explore-genre"><option value="all">All genres</option></select></label>
         <label><span>SORT BY</span><select id="explore-sort"><option value="genre">Genre</option><option value="country">Country</option><option value="name">Channel name</option></select></label>
@@ -100,11 +127,12 @@
 
     <nav class="bottom-nav" aria-label="Main sections">
       <button class="nav-item active" data-screen="radio-screen"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="m7 7 8-4M7 11v6m3-6v6m5-6h3M15 17h3"/></svg>RADIO</button>
-      <button class="nav-item" data-screen="tv-screen"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="m8 3 4 3 4-3m-4 16v3m-5 0h10"/><circle cx="18" cy="16" r=".7"/></svg>LIVE TV</button>
+      <button class="nav-item" data-screen="tv-screen"><svg class="nav-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="m8 3 4 3 4-3m-4 16v3m-5 0h10"/><circle cx="18" cy="16" r=".7"/></svg>TV</button>
       <button class="nav-item" data-screen="presets-screen"><span>★</span>PRESETS</button>
       <button class="nav-item" data-screen="explore-screen"><span>⌕</span>EXPLORE</button>
     </nav>
   </main>
+  <dialog class="settings-dialog" id="settings-dialog"><form method="dialog"><button class="dialog-close" aria-label="Close settings">×</button><span class="eyebrow">PERSONALISE YOUR PLAYER</span><h2>Settings</h2><div class="setting-row"><span><b>LEGACY THEME</b><small>Allow 10 taps on the Radio page to switch to the Version 1 look.</small></span><label class="setting-switch"><input id="legacy-theme-enabled" type="checkbox" role="switch" aria-label="Legacy theme on or off"><span class="switch-track" aria-hidden="true"></span></label></div><div class="setting-row"><span><b>THEME</b><small>Allow switching between Retro, Modern, and Ultra.</small></span><label class="setting-switch"><input id="theme-switch-enabled" type="checkbox" role="switch" aria-label="Theme switching on or off"><span class="switch-track" aria-hidden="true"></span></label></div><label class="setting-row"><span><b>App theme</b><small>Retro: warm glow · Modern: white glow · Ultra: color glow</small></span><select id="theme-choice"><option value="retro">RETRO</option><option value="modern">MODERN</option><option value="ultra">ULTRA</option></select></label><p class="settings-note">Your presets and choices remain saved in this browser.</p></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>

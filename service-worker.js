@@ -1,16 +1,17 @@
-const CACHE_NAME = 'coolmag-retro-radio-v1.0.6';
+const CACHE_NAME = 'rectified-retrotvra-v2-1';
 const APP_FILES = [
   './',
   './index.html',
   './admin.html',
-  './style.css?v=39',
-  './app.js?v=39',
-  './admin.js?v=1.0.1',
-  './admin-entry.js?v=1.0.0',
+  './style.css?v=rectified-1',
+  './app.js?v=rectified-1',
+  './admin.js?v=rectified-1',
+  './admin-entry.js?v=1.0.1',
   './manifest.webmanifest',
   './icon.svg',
   './data/radio-presets.json',
-  './data/tv-presets.json'
+  './data/tv-presets.json',
+  './data/app-settings.json'
 ];
 
 self.addEventListener('install', event => {
@@ -24,7 +25,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys()
-      .then(keys => Promise.all(keys.filter(key => key.startsWith('coolmag-retro-radio-') && key !== CACHE_NAME).map(key => caches.delete(key))))
+      .then(keys => Promise.all(keys.filter(key => key.startsWith('rectified-retrotvra-v2-') && key !== CACHE_NAME).map(key => caches.delete(key))))
       .then(() => self.clients.claim())
   );
 });
@@ -44,6 +45,6 @@ self.addEventListener('fetch', event => {
         }
         return response;
       })
-      .catch(() => caches.match(request).then(cached => cached || caches.match('./index.html')))
+      .catch(() => caches.match(request).then(cached => cached || (request.mode==='navigate'?caches.match('./index.html'):Response.error())))
   );
 });
