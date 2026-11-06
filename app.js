@@ -374,6 +374,14 @@
   function stepTV(direction){const rows=currentRows('tv');if(!rows.length)return;let i=rows.findIndex(s=>s.url===tvCurrent()?.url);if(i<0)i=direction>0?-1:0;i=(i+direction+rows.length)%rows.length;playTV(rows[i]);}
   let tvFullscreenActive=false,tvNativeFullscreen=false;
   const tvFullscreenButton=document.querySelector('[data-remote="fullscreen"]');
+  function fitTVFullscreenVideo(){
+    if(!tvFullscreenActive)return;
+    const stage=$('tv-display'),w=stage.clientWidth,h=stage.clientHeight;
+    const ratio=video.videoWidth&&video.videoHeight?video.videoWidth/video.videoHeight:16/9;
+    const width=Math.min(w,h*ratio),height=width/ratio;
+    video.style.setProperty('width',`${width}px`,'important');
+    video.style.setProperty('height',`${height}px`,'important');
+  }
   function syncTVFullscreenLayout(){
     const stage=$('tv-display');
     const width=window.visualViewport?.width||window.innerWidth;
@@ -383,6 +391,7 @@
     stage.classList.toggle('landscape-fallback',tvFullscreenActive&&mobile&&height>width);
     stage.style.setProperty('--tv-viewport-width',`${width}px`);
     stage.style.setProperty('--tv-viewport-height',`${height}px`);
+    requestAnimationFrame(fitTVFullscreenVideo);
   }
   async function toggleTVFullscreen(){
     if(tvFullscreenActive){exitTVFullscreen();return;}
@@ -405,7 +414,7 @@
     else{try{screen.orientation?.unlock?.();}catch{}}
   }
   function exitTVFullscreen(){
-    tvFullscreenActive=false;tvNativeFullscreen=false;
+    tvFullscreenActive=false;tvNativeFullscreen=false;video.style.removeProperty('width');video.style.removeProperty('height');
     $('tv-display').classList.remove('cinema-mode','landscape-fallback');
     document.body.classList.remove('tv-fullscreen-open');
     const shell=$('tv-fullscreen-shell');if(shell._homeParent){shell._homeParent.insertBefore(shell,shell._homeNext?.parentNode===shell._homeParent?shell._homeNext:null);shell._homeParent=null;}
@@ -415,6 +424,8 @@
     try{screen.orientation?.unlock?.();}catch{}
     renderTVRail();
   }
+  video.addEventListener('loadedmetadata',fitTVFullscreenVideo);
+  video.addEventListener('resize',fitTVFullscreenVideo);
   window.addEventListener('resize',syncTVFullscreenLayout);
   window.visualViewport?.addEventListener('resize',syncTVFullscreenLayout);
   window.addEventListener('orientationchange',syncTVFullscreenLayout);

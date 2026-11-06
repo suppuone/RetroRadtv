@@ -1,11 +1,11 @@
-const CACHE_NAME = 'rectified-retrotvra-v2-1';
+const CACHE_NAME = 'rectified-retrotvra-v2-2';
 const APP_FILES = [
   './',
   './index.html',
   './admin.html',
-  './style.css?v=rectified-1',
-  './app.js?v=rectified-1',
-  './admin.js?v=rectified-1',
+  './style.css?v=rectified-2',
+  './app.js?v=rectified-2',
+  './admin.js?v=rectified-2',
   './admin-entry.js?v=1.0.1',
   './manifest.webmanifest',
   './icon.svg',
