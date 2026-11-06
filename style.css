@@ -1346,3 +1346,8 @@ body:not(.tv-fullscreen-open) .screen{height:auto!important;max-height:none!impo
 body.tv-fullscreen-open #tv-display .tv-picture{display:flex!important;align-items:center!important;justify-content:center!important;max-height:none!important;min-height:0!important;aspect-ratio:auto!important;padding:0!important;margin:0!important;overflow:hidden!important;transform:none!important}
 body.tv-fullscreen-open #tv-display #tv-video{display:block!important;flex:none!important;min-width:0!important;min-height:0!important;max-width:100%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;transform:none!important;zoom:1!important;margin:0!important;padding:0!important;aspect-ratio:auto!important}
 body.tv-fullscreen-open .fullscreen-titlebar{position:absolute!important;z-index:5;top:0;left:0;right:0;background:linear-gradient(#0008,transparent)!important;pointer-events:none}
+
+body.tv-fullscreen-open #tv-display #tv-video.tv-zoomed{max-width:none!important;max-height:none!important}
+body.tv-fullscreen-open .fullscreen-side-controls button[aria-pressed="true"]{border-color:#f5ce76;background:#795b2699;color:#ffe4a4}
+body.tv-fullscreen-open .fullscreen-side-controls{max-height:calc(100% - 16px);overflow-y:auto;gap:6px!important;scrollbar-width:none}
+body.tv-fullscreen-open .fullscreen-side-controls button{flex-shrink:0;width:36px;height:36px;min-width:36px;min-height:36px}
