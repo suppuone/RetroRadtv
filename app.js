@@ -9,6 +9,30 @@
   const RADIO_STORE='retrotvra.radio-presets.v1',TV_STORE='retrotvra.tv-presets.v1',TV_ORDER_STORE='retrotvra.tv-order.v1',RADIO_HIDDEN_STORE='retrotvra.radio-hidden.v1',TV_HIDDEN_STORE='retrotvra.tv-hidden.v1',VOLUME_STORE='retrotvra.volume.v1',THEME_STORE='retrotvra.theme.v2',RADIO_SKIN_STORE='retrotvra.radio-skin.v1',LEGACY_THEME_ENABLED_STORE='retrotvra.legacy-theme-enabled.v1',THEME_SWITCH_ENABLED_STORE='retrotvra.theme-switch-enabled.v1',RECENT_STORE='retrotvra.recent.v2';
   let radios=[],tvs=[],radioPresets={},tvPresets={},recentHistory=[],radioIndex=-1,tvIndex=-1,presetMode='radio',selectedTVPresetKey=null,browserKind='radio',browserSource='library',onlineRows=[],onlineTVCache=null,onlineCountries=[],onlineGenres=[],onlineOffset=0,onlineVisibleLimit=100,onlineHasMore=false,onlineSearchDone=false,hls=null,radioHls=null,currentRadioSource='',toastTimer=null,dragState=null,languageCatalog=[],languageNameByCode=new Map(),languageNameByKey=new Map();
   const audio=$('radio-audio'),video=$('tv-video');
+  let remoteMediaKind='radio';
+  function syncRemoteMediaSession(){
+    if(!navigator.mediaSession)return;
+    const media=remoteMediaKind==='tv'?video:audio,station=remoteMediaKind==='tv'?tvCurrent():radioCurrent();
+    try{navigator.mediaSession.playbackState=media.currentSrc||media.src?(media.paused?'paused':'playing'):'none';
+      if(typeof MediaMetadata!=='undefined')navigator.mediaSession.metadata=new MediaMetadata({title:station?.name||'RetroRADtv',artist:station?.country||'',album:remoteMediaKind==='tv'?'TV':'Radio'});
+    }catch{}
+  }
+  function installRemoteMediaControls(){
+    if(!navigator.mediaSession?.setActionHandler)return;
+    const media=()=>remoteMediaKind==='tv'?video:audio;
+    const actions={
+      nexttrack:()=>remoteMediaKind==='tv'?stepTV(1):stepRadio(1),
+      previoustrack:()=>remoteMediaKind==='tv'?stepTV(-1):stepRadio(-1),
+      play:()=>{if(media().src||media().currentSrc)media().play().catch(()=>notify('Select Play in the app to resume.'));else remoteMediaKind==='tv'?$('tv-toggle').click():toggleRadio();},
+      pause:()=>media().pause(),
+      stop:()=>remoteMediaKind==='tv'?stopTV():stopRadio()
+    };
+    for(const [action,handler] of Object.entries(actions)){try{navigator.mediaSession.setActionHandler(action,handler);}catch{}}
+    for(const [kind,element] of [['radio',audio],['tv',video]]){
+      element.addEventListener('play',()=>{remoteMediaKind=kind;syncRemoteMediaSession();});
+      for(const event of ['pause','ended','emptied','loadedmetadata'])element.addEventListener(event,syncRemoteMediaSession);
+    }
+  }
   const THEME_GLOW={retro:'warm',modern:'white',ultra:'color'};
   let legacyThemeEnabled=false,themeSwitchEnabled=true;
   try{const legacySetting=localStorage.getItem(LEGACY_THEME_ENABLED_STORE),themeSetting=localStorage.getItem(THEME_SWITCH_ENABLED_STORE);if(legacySetting!==null)legacyThemeEnabled=legacySetting==='true';if(themeSetting!==null)themeSwitchEnabled=themeSetting==='true';}catch{}
@@ -670,6 +694,7 @@
   document.addEventListener('webkitfullscreenchange',onTVFullscreenChange);
   document.addEventListener('keydown',event=>{if(event.key==='Escape'&&tvFullscreenActive){event.preventDefault();exitTVFullscreen();}});
   document.addEventListener('keydown',event=>{if(event.target.closest('input,select,textarea,button,video,[contenteditable],.preset-drag-handle'))return;if(event.code==='Space'&&['radio-screen','tv-screen'].includes(document.querySelector('.screen.active')?.id)){event.preventDefault();if(!$('radio-screen').classList.contains('active'))$('tv-toggle').click();else toggleRadio();}if(event.key==='ArrowRight'&&$('tv-screen').classList.contains('active'))stepTV(1);if(event.key==='ArrowLeft'&&$('tv-screen').classList.contains('active'))stepTV(-1);});
+  installRemoteMediaControls();
   video.volume=0.05;updateTVNumbers();
   const volume=Number(loadStore(VOLUME_STORE,30));setRadioVolume(Number.isFinite(volume)?Math.min(100,Math.max(0,volume)):30);
   let pendingInstallPrompt=null;const installButton=$('install-app'),installedModes=['standalone','minimal-ui','fullscreen','window-controls-overlay'].map(mode=>window.matchMedia(`(display-mode: ${mode})`));
